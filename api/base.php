@@ -156,3 +156,5 @@ function q($sql){
 
 
 $Bottom=new DB('bottom');
+$Mem=new DB('Mem'); //檢測帳號
+$Admin = new DB('admin');
