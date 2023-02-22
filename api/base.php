@@ -156,5 +156,10 @@ function q($sql){
 
 
 $Bottom=new DB('bottom');
-$Mem=new DB('Mem'); //檢測帳號
-$Admin = new DB('admin');
+$Mem=new DB('mem');
+$Admin=new DB('admin');
+$Type=new DB('type');
+$Goods=new DB('goods');
+$Order=new DB('orders');
+
+?>

@@ -1,9 +1,6 @@
-<h2>第一次購物</h2>
-<a href="?do=reg">
-    <img src="./icon/0413.jpg">
-</a>
-<h2>會員登入</h2>
-
+<?php
+//echo serialize([1,2,3,4,5]);
+?>
 <table class="all">
     <tr>
         <td class="tt ct">帳號</td>
@@ -17,40 +14,36 @@
         <td class="tt ct">驗證碼</td>
         <td class="pp">
             <?php
-            $a = rand(10, 99);
-            $b = rand(10, 99);
-            $_SESSION['cert'] = $a + $b;
-            echo $a . "+" . $b . "=";
+                $a=rand(10,99);
+                $b=rand(10,99);
+                $_SESSION['cert']=$a+$b;         
+                echo $a . "+" . $b . "=";
             ?>
             <input type="text" name="cert" id="cert">
         </td>
     </tr>
 </table>
-<div class="ct"><button onclick="login()">確認</button></div>
+<div class="ct"><button onclick="login('admin')">確認</button></div>
 
 <script>
-    function login() {
-        $.get("./api/chk_cert.php", {
-            cert: $('#cert').val()
-        }, (res) => {
-            console.log(res)
-            if (parseInt(res) == 1) {
 
-                $.get("./api/chk_pw.php", {
-                    acc: $("#acc").val(),
-                    pw: $("#pw").val()
-                }, (res) => {
-                    if (parseInt(res)) {
-                        location.href = 'index.php';
-                    } else {
-                        alert("帳號或密碼錯誤,請重新輸入");
-                    }
-                })
+function login(table){
+    $.get("./api/chk_cert.php",{cert:$('#cert').val()},(res)=>{
+        if(parseInt(res)==1){
 
-            } else {
-                alert("驗證碼錯誤,請重新輸入");
-            }
-        })
+            $.get("./api/chk_pw.php",{table,acc:$("#acc").val(),pw:$("#pw").val()},(res)=>{
+                if(parseInt(res)){
+                    location.href='back.php?do=admin';
+                }else{
+                    alert("帳號或密碼錯誤,請重新輸入");
+                }
+            })
 
-    }
+        }else{
+            alert("驗證碼錯誤,請重新輸入");
+        }
+    })
+
+}
+
 </script>

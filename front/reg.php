@@ -1,7 +1,4 @@
 <h2 class="ct">會員註冊</h2>
-<?php
-echo serialize([1,2,3,4,5]);
-?>
 
 <!-- table.all>tr*6>td.tt.ct+td.pp>input:text -->
 <table class="all">
@@ -40,7 +37,8 @@ echo serialize([1,2,3,4,5]);
 
 
 <script>
-    /* $("#check").on('click',function(){
+
+/* $("#check").on('click',function(){
     let acc=$("#acc").val();
 
     $.get("./api/chk_acc.php",{acc},(result)=>{
@@ -52,37 +50,35 @@ echo serialize([1,2,3,4,5]);
     })
 }) */
 
-    function chk() {
-        let acc = $("#acc").val();
-        $.get("./api/chk_acc.php", {
-            acc
-        }, (result) => {
-            if (parseInt(result) || acc == 'admin') {
-                alert("此帳號已存在,請使用別的帳號");
-            } else {
-                alert("此帳號可使用");
-            }
-        })
-    }
+function chk(){
+    let acc=$("#acc").val();
+    $.get("./api/chk_acc.php",{acc},(result)=>{
+        if(parseInt(result)  || acc=='admin' ){
+            alert("此帳號已存在,請使用別的帳號")
+        }else{
+            alert("此帳號可使用")
+        }
+    })
+}
 
-    function reg() {
-        let mem = {
-            name: $("#name").val(),
-            acc: $("#acc").val(),
-            pw: $("#pw").val(),
-            tel: $("#tel").val(),
-            addr: $("#addr").val(),
-            email: $("#email").val(),
-        };
-        $.get("./api/chk_acc.php", mem, (result) => {
-            if (parseInt(result) || acc == 'admin') {
-                alert("此帳號已存在,請使用別的帳號")
-            } else {
-                $.post("./api/save_mem.php", mem, () => {
-                    location.href = '?do=login';
-                })
-            }
-        })
+function reg(){
+    let mem={name:$("#name").val(),
+             acc:$("#acc").val(),
+             pw:$("#pw").val(),
+             tel:$("#tel").val(),
+             addr:$("#addr").val(),
+             email:$("#email").val(),
+            };
+    $.get("./api/chk_acc.php",mem,(result)=>{
+        if(parseInt(result) || acc=='admin' ){
+            alert("此帳號已存在,請使用別的帳號")
+        }else{
+            $.post("./api/save_mem.php",mem,()=>{
+              location.href='?do=login'  
+            })
+        }
+    })
 
-    }
+}
+
 </script>

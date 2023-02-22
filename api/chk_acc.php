@@ -1,7 +1,6 @@
-<?php
-include_once "base.php";
+<?php include_once "base.php";
 
-$chk=$Mem->count(['acc'=>$_GET]);
+$chk=$Mem->count(['acc'=>$_GET['acc']]);
 
 if($chk>0){
     echo 1;
@@ -9,8 +8,4 @@ if($chk>0){
     echo 0;
 }
 
-// 精簡寫法
-// ehco $Mem->count(['acc' => $_GET]);
 
-
-?>
